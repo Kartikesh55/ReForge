@@ -14,7 +14,7 @@ def test_analysis_api_exposes_real_graph(monkeypatch, tmp_path: Path):
     client = TestClient(app)
 
     created = client.post("/api/projects", json={"name": "sample"}).json()
-    source = Path(created["source_path"])
+    source = settings.PROJECTS_DIR / created["project_id"] / "source"
     (source / "package.json").write_text('{"dependencies": {"express": "^4.0.0"}}', encoding="utf-8")
     (source / "app.js").write_text(
         'const express = require("express");\n'

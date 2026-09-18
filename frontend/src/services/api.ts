@@ -103,3 +103,60 @@ export async function fetchNode(projectId: string, nodeId: string) {
 export async function fetchNodeRelations(projectId: string, nodeId: string, relation: 'dependencies' | 'dependents') {
   return (await api.get<{ nodes: GraphNode[] }>(`/api/projects/${encodeURIComponent(projectId)}/nodes/${encodeURIComponent(nodeId)}/${relation}`)).data
 }
+
+export type AskResponse = {
+  answer: string
+  evidence: { file: string; start_line: number; end_line: number; reason: string; snippet?: string }[]
+  related_nodes: { id: string; name: string; type: string }[]
+  confidence_basis: { direct_graph_links: number; source_evidence: number; inference_used: boolean }
+}
+
+export async function askReforge(projectId: string, question: string, mode: 'expert' | 'developer' | 'beginner' | 'layman') {
+  return (await api.post<AskResponse>(`/api/projects/${encodeURIComponent(projectId)}/ask`, { question, mode })).data
+}
+
+export type FlowStep = {
+  node_id: string
+  name: string
+  type: string
+  file?: string
+  start_line?: number
+  end_line?: number
+  reason: string
+}
+export type FlowTrace = {
+  query: string
+  entrypoint: FlowStep
+  alternatives: FlowStep[]
+  steps: FlowStep[]
+  edges: { source: string; target: string; type: string }[]
+  unresolved: { node_id: string; name: string; type: string; reason: string }[]
+  evidence: FlowStep[]
+  trace_type: 'static'
+}
+
+export async function traceFlow(projectId: string, query: string): Promise<FlowTrace> {
+  return (await api.post<FlowTrace>(`/api/projects/${encodeURIComponent(projectId)}/trace`, { query })).data
+}
+
+export type MigrationEvidence = { file: string; start_line: number; end_line: number; reason: string }
+export type MigrationPlan = {
+  plan_id: string
+  source_stack: Record<string, unknown>
+  target_stack: Record<string, unknown>
+  compatibility: { supported: boolean; reasons: string[] }
+  application_model: { name?: string; components: { name: string; type: string; source_file: string; source_symbol?: string }[] }
+  file_mappings: { source_file: string; source_type: string; target_file: string; target_type: string; reason: string; evidence: MigrationEvidence[] }[]
+  database_mappings: { source_model: string; target_table: string; fields: unknown[]; relationships: unknown[]; requires_review: string[]; evidence: MigrationEvidence[] }[]
+  dependency_mappings: { source: string; target: string }[]
+  migration_steps: { order: number; title: string; affected_files: string[] }[]
+  risks: { area: string; risk: string; reason: string; evidence: MigrationEvidence[]; requires_review: boolean }[]
+  requires_review: string[]
+  evidence: MigrationEvidence[]
+}
+
+export async function generateMigrationPlan(projectId: string): Promise<MigrationPlan> {
+  return (await api.post<MigrationPlan>(`/api/projects/${encodeURIComponent(projectId)}/migration/plan`, {
+    target: { language: 'java', runtime: 'jvm', framework: 'spring_boot', database: 'postgresql', test_framework: 'junit' },
+  })).data
+}

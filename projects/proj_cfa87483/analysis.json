@@ -1,0 +1,506 @@
+{
+  "analysis_id": "anlz_de149a7b",
+  "project_id": "proj_cfa87483",
+  "status": "COMPLETED",
+  "created_at": "2026-09-18T16:17:48.539089Z",
+  "scanner": {
+    "source_path": "C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+    "project_metadata": {},
+    "files": [
+      "Customer Support Automation System/.gitignore",
+      "Customer Support Automation System/agents.py",
+      "Customer Support Automation System/app.py",
+      "Customer Support Automation System/documents/company_policy.txt",
+      "Customer Support Automation System/documents/faq.txt",
+      "Customer Support Automation System/documents/pricing_guide.txt",
+      "Customer Support Automation System/documents/technical_manual.txt",
+      "Customer Support Automation System/memory.db",
+      "Customer Support Automation System/memory.py",
+      "Customer Support Automation System/rag.py",
+      "Customer Support Automation System/README.md",
+      "Customer Support Automation System/requirements.txt",
+      "Customer Support Automation System/state.py",
+      "Customer Support Automation System/workflow.py",
+      "Customer Support Automation System/workflow_diagram.png"
+    ],
+    "ignored_paths": [
+      "Customer Support Automation System/.git",
+      "Customer Support Automation System/.git/COMMIT_EDITMSG",
+      "Customer Support Automation System/.git/HEAD",
+      "Customer Support Automation System/.git/config",
+      "Customer Support Automation System/.git/description",
+      "Customer Support Automation System/.git/hooks",
+      "Customer Support Automation System/.git/hooks/applypatch-msg.sample",
+      "Customer Support Automation System/.git/hooks/commit-msg.sample",
+      "Customer Support Automation System/.git/hooks/fsmonitor-watchman.sample",
+      "Customer Support Automation System/.git/hooks/post-update.sample",
+      "Customer Support Automation System/.git/hooks/pre-applypatch.sample",
+      "Customer Support Automation System/.git/hooks/pre-commit.sample",
+      "Customer Support Automation System/.git/hooks/pre-merge-commit.sample",
+      "Customer Support Automation System/.git/hooks/pre-push.sample",
+      "Customer Support Automation System/.git/hooks/pre-rebase.sample",
+      "Customer Support Automation System/.git/hooks/pre-receive.sample",
+      "Customer Support Automation System/.git/hooks/prepare-commit-msg.sample",
+      "Customer Support Automation System/.git/hooks/push-to-checkout.sample",
+      "Customer Support Automation System/.git/hooks/sendemail-validate.sample",
+      "Customer Support Automation System/.git/hooks/update.sample",
+      "Customer Support Automation System/.git/index",
+      "Customer Support Automation System/.git/info",
+      "Customer Support Automation System/.git/info/exclude",
+      "Customer Support Automation System/.git/logs",
+      "Customer Support Automation System/.git/logs/HEAD",
+      "Customer Support Automation System/.git/logs/refs",
+      "Customer Support Automation System/.git/logs/refs/heads",
+      "Customer Support Automation System/.git/logs/refs/heads/main",
+      "Customer Support Automation System/.git/logs/refs/remotes",
+      "Customer Support Automation System/.git/logs/refs/remotes/origin",
+      "Customer Support Automation System/.git/logs/refs/remotes/origin/main",
+      "Customer Support Automation System/.git/objects",
+      "Customer Support Automation System/.git/objects/22",
+      "Customer Support Automation System/.git/objects/22/d8a0c9d6e87a38709f47b5573988198ef0e5fd",
+      "Customer Support Automation System/.git/objects/31",
+      "Customer Support Automation System/.git/objects/31/c3d434db580def9b3f3ffc93ca4bb92c7fe5bf",
+      "Customer Support Automation System/.git/objects/4b",
+      "Customer Support Automation System/.git/objects/4b/414ffecfc6a05f8609826f5bc2fd3c224307ec",
+      "Customer Support Automation System/.git/objects/52",
+      "Customer Support Automation System/.git/objects/52/a42d606f313e541091f6d3b76d9d28c5da419a",
+      "Customer Support Automation System/.git/objects/57",
+      "Customer Support Automation System/.git/objects/57/b87a967d62270d3faa56df400a498fde5c0ee1",
+      "Customer Support Automation System/.git/objects/63",
+      "Customer Support Automation System/.git/objects/63/5efb8e90e2f8a410de180f89a2abfbcc4d1ef4",
+      "Customer Support Automation System/.git/objects/6b",
+      "Customer Support Automation System/.git/objects/6b/b6bf89e5a0c21de0f6c9fc0853dbf6d9343229",
+      "Customer Support Automation System/.git/objects/6f",
+      "Customer Support Automation System/.git/objects/6f/e4d0cb28c8a170806662a3bd8eec973e883127",
+      "Customer Support Automation System/.git/objects/78",
+      "Customer Support Automation System/.git/objects/78/3e2584d1890fc83f72b885eeee83a1cf3c6684",
+      "Customer Support Automation System/.git/objects/88",
+      "Customer Support Automation System/.git/objects/88/8c96bacdb16bc1d8a39eb695cff98d074b5be7",
+      "Customer Support Automation System/.git/objects/8b",
+      "Customer Support Automation System/.git/objects/8b/428fe1d1ad7f3868f7b09d5ee26bfa581fdb23",
+      "Customer Support Automation System/.git/objects/8f",
+      "Customer Support Automation System/.git/objects/8f/b06f54c41bccad2f95432ff1b3cb8f6a6bd4af",
+      "Customer Support Automation System/.git/objects/92",
+      "Customer Support Automation System/.git/objects/92/77954d9f3f4e7de1168ebe9fe9c3c5546985ba",
+      "Customer Support Automation System/.git/objects/99",
+      "Customer Support Automation System/.git/objects/99/a535b25a8d9dbede26603f76ded484618d8d2b",
+      "Customer Support Automation System/.git/objects/a3",
+      "Customer Support Automation System/.git/objects/a3/7071d3c51c0068aa0394be43c3c39b111bcda9",
+      "Customer Support Automation System/.git/objects/bd",
+      "Customer Support Automation System/.git/objects/bd/c497cf96c9693c8cd4bba7f8ce1bdc94c76969",
+      "Customer Support Automation System/.git/objects/c3",
+      "Customer Support Automation System/.git/objects/c3/01b449d71d4c60689ce5ddb886785d4cc36a81",
+      "Customer Support Automation System/.git/objects/ce",
+      "Customer Support Automation System/.git/objects/ce/de06ba30d3f1f4f4f083e4c30e4a979cb6939f",
+      "Customer Support Automation System/.git/objects/e6",
+      "Customer Support Automation System/.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "Customer Support Automation System/.git/objects/ea",
+      "Customer Support Automation System/.git/objects/ea/9041d09e1b53bd5de69dc96fc84cf5ef9f40db",
+      "Customer Support Automation System/.git/objects/ef",
+      "Customer Support Automation System/.git/objects/ef/d5712bd69141df7e2a3f3af80b3fa549d2b729",
+      "Customer Support Automation System/.git/objects/f1",
+      "Customer Support Automation System/.git/objects/f1/08385fd480dfc811900f40078087c5720e3ced",
+      "Customer Support Automation System/.git/objects/f5",
+      "Customer Support Automation System/.git/objects/f5/ad1611c101e4217bb90a7edc3d16b365f77422",
+      "Customer Support Automation System/.git/objects/info",
+      "Customer Support Automation System/.git/objects/pack",
+      "Customer Support Automation System/.git/refs",
+      "Customer Support Automation System/.git/refs/heads",
+      "Customer Support Automation System/.git/refs/heads/main",
+      "Customer Support Automation System/.git/refs/remotes",
+      "Customer Support Automation System/.git/refs/remotes/origin",
+      "Customer Support Automation System/.git/refs/remotes/origin/main",
+      "Customer Support Automation System/.git/refs/tags",
+      "Customer Support Automation System/__pycache__",
+      "Customer Support Automation System/__pycache__/agents.cpython-313.pyc",
+      "Customer Support Automation System/__pycache__/memory.cpython-313.pyc",
+      "Customer Support Automation System/__pycache__/rag.cpython-313.pyc",
+      "Customer Support Automation System/__pycache__/state.cpython-313.pyc",
+      "Customer Support Automation System/__pycache__/workflow.cpython-312.pyc",
+      "Customer Support Automation System/__pycache__/workflow.cpython-313.pyc"
+    ],
+    "source_files": [],
+    "test_files": [],
+    "file_extensions": [
+      ".db",
+      ".md",
+      ".png",
+      ".py",
+      ".txt"
+    ],
+    "programming_languages": [],
+    "package_json": {
+      "present": false,
+      "valid": false
+    },
+    "dependencies": [],
+    "dev_dependencies": [],
+    "npm_scripts": {},
+    "likely_entry_points": [],
+    "framework_evidence": [],
+    "database_orm_evidence": [],
+    "test_framework_evidence": [],
+    "configuration_environment_files": [],
+    "statistics": {
+      "total_files": 15,
+      "source_files": 0,
+      "test_files": 0,
+      "ignored_paths": 94,
+      "approximate_lines_of_code": 0
+    },
+    "files_count": 15,
+    "devDependencies": [],
+    "scripts": {},
+    "detected_stack": {
+      "runtime": "Unknown",
+      "framework": "Unknown",
+      "orm": "Unknown",
+      "database": "Unknown",
+      "testing": "Unknown"
+    }
+  },
+  "parse_results": [],
+  "graph": {
+    "nodes": [
+      {
+        "id": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "type": "repository",
+        "name": "C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "node_type": "repository",
+        "label": "C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "metadata": {
+          "path": "C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source"
+        },
+        "evidence": {}
+      },
+      {
+        "id": "file:Customer Support Automation System/.gitignore",
+        "type": "file",
+        "name": "Customer Support Automation System/.gitignore",
+        "node_type": "file",
+        "label": "Customer Support Automation System/.gitignore",
+        "metadata": {
+          "file": "Customer Support Automation System/.gitignore"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/.gitignore"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/agents.py",
+        "type": "file",
+        "name": "Customer Support Automation System/agents.py",
+        "node_type": "file",
+        "label": "Customer Support Automation System/agents.py",
+        "metadata": {
+          "file": "Customer Support Automation System/agents.py"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/agents.py"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/app.py",
+        "type": "file",
+        "name": "Customer Support Automation System/app.py",
+        "node_type": "file",
+        "label": "Customer Support Automation System/app.py",
+        "metadata": {
+          "file": "Customer Support Automation System/app.py"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/app.py"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/documents/company_policy.txt",
+        "type": "file",
+        "name": "Customer Support Automation System/documents/company_policy.txt",
+        "node_type": "file",
+        "label": "Customer Support Automation System/documents/company_policy.txt",
+        "metadata": {
+          "file": "Customer Support Automation System/documents/company_policy.txt"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/documents/company_policy.txt"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/documents/faq.txt",
+        "type": "file",
+        "name": "Customer Support Automation System/documents/faq.txt",
+        "node_type": "file",
+        "label": "Customer Support Automation System/documents/faq.txt",
+        "metadata": {
+          "file": "Customer Support Automation System/documents/faq.txt"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/documents/faq.txt"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/documents/pricing_guide.txt",
+        "type": "file",
+        "name": "Customer Support Automation System/documents/pricing_guide.txt",
+        "node_type": "file",
+        "label": "Customer Support Automation System/documents/pricing_guide.txt",
+        "metadata": {
+          "file": "Customer Support Automation System/documents/pricing_guide.txt"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/documents/pricing_guide.txt"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/documents/technical_manual.txt",
+        "type": "file",
+        "name": "Customer Support Automation System/documents/technical_manual.txt",
+        "node_type": "file",
+        "label": "Customer Support Automation System/documents/technical_manual.txt",
+        "metadata": {
+          "file": "Customer Support Automation System/documents/technical_manual.txt"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/documents/technical_manual.txt"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/memory.db",
+        "type": "file",
+        "name": "Customer Support Automation System/memory.db",
+        "node_type": "file",
+        "label": "Customer Support Automation System/memory.db",
+        "metadata": {
+          "file": "Customer Support Automation System/memory.db"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/memory.db"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/memory.py",
+        "type": "file",
+        "name": "Customer Support Automation System/memory.py",
+        "node_type": "file",
+        "label": "Customer Support Automation System/memory.py",
+        "metadata": {
+          "file": "Customer Support Automation System/memory.py"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/memory.py"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/rag.py",
+        "type": "file",
+        "name": "Customer Support Automation System/rag.py",
+        "node_type": "file",
+        "label": "Customer Support Automation System/rag.py",
+        "metadata": {
+          "file": "Customer Support Automation System/rag.py"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/rag.py"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/README.md",
+        "type": "file",
+        "name": "Customer Support Automation System/README.md",
+        "node_type": "file",
+        "label": "Customer Support Automation System/README.md",
+        "metadata": {
+          "file": "Customer Support Automation System/README.md"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/README.md"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/requirements.txt",
+        "type": "file",
+        "name": "Customer Support Automation System/requirements.txt",
+        "node_type": "file",
+        "label": "Customer Support Automation System/requirements.txt",
+        "metadata": {
+          "file": "Customer Support Automation System/requirements.txt"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/requirements.txt"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/state.py",
+        "type": "file",
+        "name": "Customer Support Automation System/state.py",
+        "node_type": "file",
+        "label": "Customer Support Automation System/state.py",
+        "metadata": {
+          "file": "Customer Support Automation System/state.py"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/state.py"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/workflow.py",
+        "type": "file",
+        "name": "Customer Support Automation System/workflow.py",
+        "node_type": "file",
+        "label": "Customer Support Automation System/workflow.py",
+        "metadata": {
+          "file": "Customer Support Automation System/workflow.py"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/workflow.py"
+        }
+      },
+      {
+        "id": "file:Customer Support Automation System/workflow_diagram.png",
+        "type": "file",
+        "name": "Customer Support Automation System/workflow_diagram.png",
+        "node_type": "file",
+        "label": "Customer Support Automation System/workflow_diagram.png",
+        "metadata": {
+          "file": "Customer Support Automation System/workflow_diagram.png"
+        },
+        "evidence": {
+          "file": "Customer Support Automation System/workflow_diagram.png"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/.gitignore",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/agents.py",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/app.py",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/documents/company_policy.txt",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/documents/faq.txt",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/documents/pricing_guide.txt",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/documents/technical_manual.txt",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/memory.db",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/memory.py",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/rag.py",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/README.md",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/requirements.txt",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/state.py",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/workflow.py",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      },
+      {
+        "source": "repository:C:\\Users\\Rudra\\Downloads\\VINHACK files\\ReForge\\projects\\proj_cfa87483\\source",
+        "target": "file:Customer Support Automation System/workflow_diagram.png",
+        "type": "CONTAINS",
+        "edge_type": "CONTAINS",
+        "metadata": {}
+      }
+    ],
+    "statistics": {
+      "node_count": 16,
+      "edge_count": 15,
+      "node_types": {
+        "repository": 1,
+        "file": 15
+      },
+      "edge_types": {
+        "CONTAINS": 15
+      }
+    }
+  },
+  "statistics": {
+    "node_count": 16,
+    "edge_count": 15,
+    "node_types": {
+      "repository": 1,
+      "file": 15
+    },
+    "edge_types": {
+      "CONTAINS": 15
+    },
+    "total_files": 15,
+    "source_files": 0,
+    "test_files": 0,
+    "lines_of_code": 0
+  }
+}

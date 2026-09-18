@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile, status
 from pydantic import BaseModel, Field
 from typing import List, Optional
 from datetime import datetime
@@ -6,6 +6,8 @@ import uuid
 import json
 from pathlib import Path
 from backend.app.config import settings
+from backend.app.services.analysis import load_analysis
+from backend.app.services.ingestion import extract_zip_safely, read_archive, safe_project_name
 
 router = APIRouter(prefix="/projects", tags=["Projects"])
 
@@ -23,8 +25,18 @@ class ProjectResponse(BaseModel):
     target_tech: str
     status: str
     created_at: str
-    source_path: str
-    target_path: str
+    ingestion_status: str = "COMPLETED"
+    analysis_status: str = "NOT_STARTED"
+    statistics: Optional[dict] = None
+
+
+def _public_project(project: dict) -> dict:
+    analysis = load_analysis(project)
+    public = {key: value for key, value in project.items() if key not in {"source_path", "target_path"}}
+    public["ingestion_status"] = project.get("ingestion_status", "COMPLETED")
+    public["analysis_status"] = analysis.get("status", "NOT_STARTED") if analysis else "NOT_STARTED"
+    public["statistics"] = analysis.get("statistics") if analysis else None
+    return public
 
 # In-memory registry backed by metadata file in projects directory
 _projects_cache: dict[str, dict] = {}
@@ -59,7 +71,46 @@ _load_projects()
 @router.get("", response_model=List[ProjectResponse])
 async def list_projects():
     _load_projects()
-    return list(_projects_cache.values())
+    return [_public_project(project) for project in _projects_cache.values()]
+
+
+@router.post("/upload", response_model=ProjectResponse, status_code=status.HTTP_201_CREATED)
+async def upload_project(file: UploadFile = File(...), name: Optional[str] = Form(None)):
+    project_id = f"proj_{uuid.uuid4().hex[:8]}"
+    project_dir = settings.PROJECTS_DIR / project_id
+    source_dir = project_dir / "source"
+    target_dir = project_dir / "target"
+    try:
+        archive_data = read_archive(file.file)
+        archive_name = Path(file.filename or "uploaded-project.zip").stem
+        project_name = safe_project_name(name or archive_name)
+        source_dir.mkdir(parents=True, exist_ok=False)
+        target_dir.mkdir(parents=True, exist_ok=True)
+        file_count = extract_zip_safely(archive_data, source_dir)
+        now = datetime.utcnow().isoformat() + "Z"
+        project_data = {
+            "project_id": project_id,
+            "name": project_name,
+            "description": None,
+            "source_tech": "Unknown",
+            "target_tech": "Not configured",
+            "status": "INGESTED",
+            "ingestion_status": "COMPLETED",
+            "created_at": now,
+            "source_path": str(source_dir),
+            "target_path": str(target_dir),
+            "file_count": file_count,
+        }
+        meta_path = _get_project_meta_path(project_id)
+        meta_path.write_text(json.dumps(project_data, indent=2), encoding="utf-8")
+        _projects_cache[project_id] = project_data
+        return _public_project(project_data)
+    except (OSError, ValueError) as exc:
+        import shutil
+        shutil.rmtree(project_dir, ignore_errors=True)
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail=str(exc)) from exc
+    finally:
+        await file.close()
 
 @router.post("", response_model=ProjectResponse, status_code=status.HTTP_201_CREATED)
 async def create_project(payload: ProjectCreate):
@@ -99,7 +150,7 @@ async def get_project(project_id: str):
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Project with ID '{project_id}' not found."
         )
-    return project
+    return _public_project(project)
 
 @router.delete("/{project_id}", status_code=status.HTTP_200_OK)
 async def delete_project(project_id: str):
