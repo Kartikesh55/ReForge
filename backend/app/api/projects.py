@@ -29,6 +29,12 @@ class ProjectResponse(BaseModel):
 # In-memory registry backed by metadata file in projects directory
 _projects_cache: dict[str, dict] = {}
 
+
+def get_project_record(project_id: str) -> dict | None:
+    if project_id not in _projects_cache:
+        _load_projects()
+    return _projects_cache.get(project_id)
+
 def _get_project_meta_path(project_id: str) -> Path:
     proj_dir = settings.PROJECTS_DIR / project_id
     proj_dir.mkdir(parents=True, exist_ok=True)
@@ -87,14 +93,13 @@ async def create_project(payload: ProjectCreate):
 
 @router.get("/{project_id}", response_model=ProjectResponse)
 async def get_project(project_id: str):
-    if project_id not in _projects_cache:
-        _load_projects()
-    if project_id not in _projects_cache:
+    project = get_project_record(project_id)
+    if project is None:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail=f"Project with ID '{project_id}' not found."
         )
-    return _projects_cache[project_id]
+    return project
 
 @router.delete("/{project_id}", status_code=status.HTTP_200_OK)
 async def delete_project(project_id: str):

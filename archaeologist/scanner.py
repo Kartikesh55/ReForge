@@ -7,15 +7,23 @@ from typing import Any
 
 
 IGNORED_DIRECTORIES = {
+    ".cache",
     ".git",
     ".hg",
     ".svn",
+    "__pycache__",
     "build",
     "coverage",
     "dist",
     "node_modules",
     "out",
     "target",
+}
+IGNORED_FILE_NAMES = {
+    ".DS_Store",
+    "npm-debug.log",
+    "yarn-debug.log",
+    "yarn-error.log",
 }
 SOURCE_EXTENSIONS = {".cjs", ".js", ".jsx", ".mjs", ".ts", ".tsx"}
 TEST_NAME_PATTERN = re.compile(
@@ -49,10 +57,11 @@ class CodebaseScanner:
             return {"error": f"Path '{self.source_path}' is not a directory"}
 
         files = self._files()
+        ignored_paths = self._ignored_paths()
         relative_files = [self._relative_path(path) for path in files]
         source_files = [
             relative for path, relative in zip(files, relative_files)
-            if path.suffix.lower() in SOURCE_EXTENSIONS and not self._is_test_file(path)
+            if self._is_source_file(path)
         ]
         test_files = [
             relative for path, relative in zip(files, relative_files)
@@ -85,6 +94,7 @@ class CodebaseScanner:
             "total_files": len(files),
             "source_files": len(source_files),
             "test_files": len(test_files),
+            "ignored_paths": len(ignored_paths),
             "approximate_lines_of_code": sum(
                 self._code_lines(self.source_path / relative) for relative in source_files
             ),
@@ -94,6 +104,7 @@ class CodebaseScanner:
             "source_path": str(self.source_path.resolve()),
             "project_metadata": self._project_metadata(package_data),
             "files": relative_files,
+            "ignored_paths": ignored_paths,
             "source_files": source_files,
             "test_files": test_files,
             "file_extensions": extensions,
@@ -124,9 +135,23 @@ class CodebaseScanner:
                 path
                 for path in self.source_path.rglob("*")
                 if path.is_file()
-                and not any(part in IGNORED_DIRECTORIES for part in path.relative_to(self.source_path).parts)
+                and not self._is_ignored_path(path)
             ),
             key=lambda path: self._relative_path(path).lower(),
+        )
+
+    def _ignored_paths(self) -> list[str]:
+        return sorted(
+            self._relative_path(path)
+            for path in self.source_path.rglob("*")
+            if self._is_ignored_path(path)
+        )
+
+    def _is_ignored_path(self, path: Path) -> bool:
+        relative_parts = path.relative_to(self.source_path).parts
+        return (
+            any(part in IGNORED_DIRECTORIES for part in relative_parts)
+            or path.name in IGNORED_FILE_NAMES
         )
 
     def _relative_path(self, path: Path) -> str:
@@ -251,6 +276,14 @@ class CodebaseScanner:
     def _is_test_file(path: Path) -> bool:
         return any(part.lower() in TEST_DIRECTORY_NAMES for part in path.parts) or bool(
             TEST_NAME_PATTERN.search(path.name)
+        )
+
+    @classmethod
+    def _is_source_file(cls, path: Path) -> bool:
+        return (
+            path.suffix.lower() in SOURCE_EXTENSIONS
+            and not cls._is_test_file(path)
+            and not cls._is_configuration_file(path)
         )
 
     @staticmethod
