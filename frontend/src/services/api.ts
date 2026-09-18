@@ -17,6 +17,37 @@ export async function fetchHealth(): Promise<HealthResponse> {
   return response.data
 }
 
+export type Project = {
+  project_id: string
+  name: string
+  status: string
+  ingestion_status: string
+  analysis_status: string
+  created_at: string
+  statistics?: GraphStats
+}
+
+export async function fetchProjects(): Promise<Project[]> {
+  const response = await api.get<Project[]>('/api/projects')
+  return response.data
+}
+
+export async function fetchProject(projectId: string): Promise<Project> {
+  const response = await api.get<Project>(`/api/projects/${encodeURIComponent(projectId)}`)
+  return response.data
+}
+
+export async function uploadProject(file: File, name?: string): Promise<Project> {
+  const form = new FormData()
+  form.append('file', file)
+  if (name?.trim()) form.append('name', name.trim())
+  const response = await api.post<Project>('/api/projects/upload', form, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+    timeout: 30000,
+  })
+  return response.data
+}
+
 export type AnalysisStatus = {
   project_id: string
   status: string
