@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+# frontend/dist is intentionally committed so fresh ZIP downloads run instantly without Node.js
+
+reforge.db
+uploads/
+projects/
+test_out_migration/
+
+*.log
+.DS_Store
+figma_assets/
